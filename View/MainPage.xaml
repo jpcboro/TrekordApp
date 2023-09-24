@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TrekordApp.View.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="ToolbarItem_Clicked" Text="New Log" />
+    </ContentPage.ToolbarItems>
+    <Grid BackgroundColor="#FBF2ED">
+        <CollectionView
+            x:Name="trekLogs"
+            SelectionChanged="logs_SelectionChanged"
+            SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        Padding="10"
+                        ColumnDefinitions="1*,3*"
+                        RowDefinitions="Auto,Auto">
+                        <Label
+                            Grid.RowSpan="2"
+                            Style="{StaticResource NormalLabel}"
+                            Text="{Binding Date, StringFormat='{0:MMM d}'}" />
+                        <Label
+                            Grid.Column="1"
+                            Style="{StaticResource BoldLabel}"
+                            Text="{Binding Title}" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Style="{StaticResource NormalLabel}"
+                            Text="{Binding EntryNotes}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
