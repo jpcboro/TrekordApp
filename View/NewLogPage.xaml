@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TrekordApp.View.NewLogPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="NewLogPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" />
+    </ContentPage.ToolbarItems>
+    <Grid
+        Padding="10"
+        BackgroundColor="{StaticResource LightBackground}"
+        ColumnDefinitions="Auto,*"
+        ColumnSpacing="10"
+        RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
+        RowSpacing="10">
+        <Label
+            Style="{StaticResource BoldLabel}"
+            Text="Title"
+            VerticalTextAlignment="Center" />
+        <Entry
+            Grid.Column="1"
+            Placeholder="Title"
+            Style="{StaticResource NormalEntry}"
+            VerticalOptions="Center" />
+        <Label
+            Grid.Row="1"
+            Style="{StaticResource BoldLabel}"
+            Text="Latitude"
+            VerticalTextAlignment="Center" />
+        <Entry
+            Grid.Row="1"
+            Grid.Column="1"
+            Placeholder="Latitude"
+            Style="{StaticResource NormalEntry}"
+            VerticalTextAlignment="Center" />
+        <Label
+            Grid.Row="2"
+            Style="{StaticResource BoldLabel}"
+            Text="Longitude"
+            VerticalTextAlignment="Center" />
+        <Entry
+            Grid.Row="2"
+            Grid.Column="1"
+            Placeholder="Longitude"
+            Style="{StaticResource NormalEntry}"
+            VerticalTextAlignment="Center" />
+        <Label
+            Grid.Row="3"
+            Style="{StaticResource BoldLabel}"
+            Text="Date"
+            VerticalTextAlignment="Center" />
+        <Entry
+            Grid.Row="3"
+            Grid.Column="1"
+            Placeholder="Date"
+            Style="{StaticResource NormalEntry}"
+            VerticalTextAlignment="Center" />
+        <Label
+            Grid.Row="4"
+            Style="{StaticResource BoldLabel}"
+            Text="Rating"
+            VerticalTextAlignment="Center" />
+        <Entry
+            Grid.Row="4"
+            Grid.Column="1"
+            Placeholder="Rating"
+            Style="{StaticResource NormalEntry}"
+            VerticalTextAlignment="Center" />
+        <Label
+            Grid.Row="5"
+            Style="{StaticResource BoldLabel}"
+            Text="Notes"
+            VerticalTextAlignment="Center" />
+        <Entry
+            Grid.Row="5"
+            Grid.Column="1"
+            Placeholder="Notes"
+            Style="{StaticResource NormalEntry}"
+            VerticalTextAlignment="Center" />
+    </Grid>
+</ContentPage>
