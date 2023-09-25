@@ -1,25 +1,39 @@
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
 using TrekordApp.Model;
+using TrekordApp.ViewModel;
 
 namespace TrekordApp.View;
 
 public partial class DetailMapPage : ContentPage
 {
-	public DetailMapPage(TrekordLog log)
+    DetailMapPageViewModel viewModel => BindingContext as DetailMapPageViewModel;
+    public DetailMapPage(DetailMapPageViewModel vm)
 	{
 		InitializeComponent();
 
-        map.MoveToRegion(MapSpan.FromCenterAndRadius(new Location(log.Latitude,
-            log.Longitude),
-            Distance.FromMiles(0.5)));
+        BindingContext = vm;
+    }
 
-        map.Pins.Add(new Pin
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if (viewModel.LogDetail != null)
         {
-            Type = PinType.Place,
-            Label = log.Title,
-            Location = new Location(log.Latitude,
-                                    log.Longitude)
-        });
+            Task.Run(async () =>
+            {
+                await Task.Delay(1000);
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    map.MoveToRegion(MapSpan.FromCenterAndRadius(new Location(viewModel.LogDetail.Latitude,
+                                     viewModel.LogDetail.Longitude), Distance.FromMiles(0.3)));
+                });
+
+            });
+
+
+        }
     }
 }

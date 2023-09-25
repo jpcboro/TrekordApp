@@ -4,8 +4,53 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+    xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="DetailMapPage">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding InitCommand}" EventName="Loaded" />
+    </ContentPage.Behaviors>
+    <Grid RowDefinitions="4*,Auto,1*">
+        <maps:Map
+            x:Name="map"
+            Grid.RowSpan="3"
+            ItemsSource="{Binding MapPins}">
+            <maps:Map.ItemTemplate>
+                <DataTemplate>
+                    <maps:Pin
+                        Address="TEST"
+                        Label="{Binding Description}"
+                        Location="{Binding Location}" />
+                </DataTemplate>
+            </maps:Map.ItemTemplate>
+        </maps:Map>
+        <Border
+            Grid.Row="1"
+            BackgroundColor="White"
+            Opacity="0.7"
+            StrokeShape="RoundRectangle 20" />
 
-    <maps:Map x:Name="map" />
+
+        <VerticalStackLayout Grid.Row="1" Padding="10">
+            <Label
+                HorizontalOptions="Center"
+                Style="{StaticResource NormalLabel}"
+                Text="{Binding LogDetail.Title}" />
+            <Label
+                HorizontalOptions="Center"
+                Style="{StaticResource NormalLabel}"
+                Text="{Binding LogDetail.Date, StringFormat='{0:M}'}" />
+            <Label
+                HorizontalOptions="Center"
+                Style="{StaticResource NormalLabel}"
+                Text="{Binding LogDetail.Rating, StringFormat='{0} star rating'}" />
+            <Label
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource NormalLabel}"
+                Text="{Binding LogDetail.EntryNotes}" />
+        </VerticalStackLayout>
+    </Grid>
+
 
 </ContentPage>
